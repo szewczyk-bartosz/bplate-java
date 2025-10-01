@@ -45,7 +45,7 @@
           installPhase = ''
             mkdir -p $out/bin
             echo "#!/bin/sh" > $out/bin/${outName}
-            echo "${pkgs.jdk24}/bin/java -cp $out/share/classes Main" >> $out/bin/my-java-app
+            echo "${pkgs.jdk24}/bin/java -cp $out/share/classes Main" >> $out/bin/${outName}
             chmod +x $out/bin/out
 
             mkdir -p $out/share/classes
