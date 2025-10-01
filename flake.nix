@@ -53,5 +53,9 @@
             cp -r out/* $out/share/classes
           '';
         };
+        apps.default = {
+          type = "app";
+          program = "${self.packages.${system}.default}/bin/${outName}";
+        };
       });
 }
