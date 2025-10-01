@@ -22,11 +22,11 @@ public class Main {
             }
         }
         System.out.println(Arrays.toString(list));
-        // for (int i = 0; i < list.length; i++)
-        // {
-        //     binSearch(list, list[i]);
-        // }
-        binSearch(list, list[list.length - 1]);
+        for (int i = 0; i < list.length; i++)
+        {
+            binSearch(list, list[i]);
+        }
+        // binSearch(list, list[list.length - 1]);
     }
 
 static void binSearch(int[] list, int target) {
@@ -35,30 +35,33 @@ static void binSearch(int[] list, int target) {
         int tail = 0;
         int head = list.length - 1;
         int index = -1;
-        while (head != tail)
+        while (true)
         {
-            System.out.println("-------");
-            System.out.println(list[pointer]);
-            System.out.println(list[tail]);
-            System.out.println(list[head]);
-            System.out.println("-------");
-            scaner.nextInt();
-
             pointer = (int) Math.floor( ((head - tail) / 2) ) + tail;
+            // System.out.println("-------");
+            // System.out.println(list[pointer]);
+            // System.out.println(list[tail]);
+            // System.out.println(list[head]);
+            // System.out.println("-------");
+            // scaner.nextInt();
+
             if (list[pointer] == target)
             {
                 index = pointer;
+                break;
+            } else if (tail == head)
+            {
                 break;
             }
             else
             {
                 if (list[pointer] > target)
                 {
-                    head = pointer;
+                    head = pointer - 1;
                 }
                 else if (list[pointer] < target)
                 {
-                    tail = pointer;
+                    tail = pointer + 1;
                 }
             }
         }
