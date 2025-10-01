@@ -9,6 +9,7 @@
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
       let
+        outName = "out";
         pkgs = import nixpkgs {
           inherit system;
         };
@@ -27,7 +28,7 @@
         };
 
         packages.default = pkgs.stdenv.mkDerivation {
-          pname = "generic-java-app";
+          pname = "${outName}";
           version = "1.0";
 
           src = ./.;
@@ -43,7 +44,7 @@
 
           installPhase = ''
             mkdir -p $out/bin
-            echo "#!/bin/sh" > $out/bin/generic-java-app
+            echo "#!/bin/sh" > $out/bin/${outName}
             echo "${pkgs.jdk24}/bin/java -cp $out/share/classes Main" >> $out/bin/my-java-app
             chmod +x $out/bin/out
 
